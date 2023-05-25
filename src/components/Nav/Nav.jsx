@@ -9,7 +9,7 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+     <Link to="/home">
         <h2 className="nav-title">Pay It Forward</h2>
       </Link>
       <div>
@@ -35,7 +35,9 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-
+      
+         
+    
         <Link className="navLink" to="/about">
           About
         </Link>
