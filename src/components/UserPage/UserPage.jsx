@@ -27,7 +27,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <Grid item xs={12} md={4}>
-        <Card sx={{ minWidth: 275 }}>
+        <Card sx={{ minWidth: 200 }}>
           <CardContent>
             <Typography
               variant="h5"
@@ -40,6 +40,28 @@ function UserPage() {
   ))}
             </Typography>
           </CardContent>
+          <CardActions>
+            <Button
+            variant="outlined"
+            color="error"
+            // onClick
+            > Complete 
+            </Button>
+            <Button
+            variant="outlined"
+            color="error"
+            // onClick
+            >
+              Favorite
+            </Button>
+            <Button
+            variant="outlined"
+            color="error"
+            // onClick
+            >
+              Shuffle
+            </Button>
+          </CardActions>
         </Card>
       </Grid>
       {/* <LogOutButton className="btn" /> */}
