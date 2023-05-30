@@ -3,8 +3,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Act from './Act';
+
 
 function InfoPage() {
   const acts = useSelector((store => store.acts));
@@ -18,6 +19,7 @@ function InfoPage() {
   return (
     <Container>
       <p> Acts of Kindness </p>
+
       <Grid container spacing={3}>
         {
           acts.map((act) => (

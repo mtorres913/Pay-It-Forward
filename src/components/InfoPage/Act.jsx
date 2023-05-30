@@ -9,6 +9,7 @@ import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useEffect } from 'react';
 
+
 function Act ({act,}){
 const acts = useSelector((store => store.acts));
 const dispatch = useDispatch();
@@ -27,8 +28,24 @@ useEffect(() =>{
             <Typography variant="h6">
             {act.acts}
             </Typography>
+       
           </CardContent>
-  
+        <CardActions>
+            <Button
+            variant="outlined"
+            color="error"
+            // onClick
+            >
+                Edit
+            </Button>
+            <Button 
+            variant="outlined"
+            color="error"
+            // onClick
+            >
+                Delete
+            </Button>
+        </CardActions>
         </Card>
       </Grid>
     )
