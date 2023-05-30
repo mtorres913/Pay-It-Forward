@@ -22,6 +22,9 @@ function UserPage() {
     dispatch(action);
   }, []);
 
+  const getBackgroundDecoration = () => {
+        return 'lightgreen';
+}
   return (
     <div className="container" id={act.id} >
       <h2>Welcome, {user.username}!</h2>

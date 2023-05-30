@@ -47,4 +47,17 @@ router.delete('/:id', (req,res) => {
     res.sendStatus(500);
   })
 })
+
+router.put('/save/:id', (req,res) => {
+  const actID = Number(req.params.id);
+  const act = req.body;
+  console.log(`PUT /save/${actID}`);
+  let queryText = `UPDATE "acts" SET "acts" = $1 WHERE "id" = $2`;
+  pool.query(queryText, [act.act, actID]).then(results => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log(`Error in PUT /acts ${error}`);
+    res.sendStatus(500);
+  })
+})
 module.exports = router;

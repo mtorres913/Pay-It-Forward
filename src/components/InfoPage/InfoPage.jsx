@@ -13,6 +13,7 @@ function InfoPage() {
   const dispatch = useDispatch();
   const [newAct, setNewAct] = useState('');
 
+
   useEffect(() => {
     const action = { type: 'GET_ACTS' }
     dispatch(action);
@@ -43,6 +44,7 @@ function InfoPage() {
         <input type="submit" />
       </form>
       <br />
+      <p>Make changes to existing acts in the list below and click "Save" to save changes to the database</p>
       <Grid container spacing={3}>
         {
           acts.map((act) => (
