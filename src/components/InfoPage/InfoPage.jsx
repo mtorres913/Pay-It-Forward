@@ -10,16 +10,25 @@ import Act from './Act';
 function InfoPage() {
   const acts = useSelector((store => store.acts));
   const dispatch = useDispatch();
+  const [newAct, setNewAct] = useState('');
 
   useEffect(() => {
     const action = { type: 'GET_ACTS' }
     dispatch(action);
   }, []);
 
+  
   return (
     <Container>
       <p> Acts of Kindness </p>
-
+      <p> Add a new act here: </p>
+      <form className="form" >
+        Act:<input type="text"
+        value={newAct}
+        onChange={(e) => setNewAct(e.target.value)} />
+        <input type="submit" />
+      </form>
+      <br />
       <Grid container spacing={3}>
         {
           acts.map((act) => (

@@ -43,7 +43,7 @@ function UserPage() {
         </Card>
       </Grid>
       {/* <LogOutButton className="btn" /> */}
-      <footer>"Human kindness has never weakened the stamina or softened the fiber of a free people. A nation does not have to be cruel to be tough." – Franklin D. Roosevelt</footer>
+      <footer>“A single act of kindness throws out roots in all directions and the roots spring up and make new trees.” – Amelia Earhart</footer>
     </div>
     
   );
