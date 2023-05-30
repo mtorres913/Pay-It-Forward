@@ -1,6 +1,6 @@
 import React from 'react';
 // import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
