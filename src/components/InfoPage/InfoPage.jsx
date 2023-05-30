@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { useEffect, useState } from 'react';
 import Act from './Act';
+import axios from 'axios';
 
 
 function InfoPage() {
@@ -17,12 +18,25 @@ function InfoPage() {
     dispatch(action);
   }, []);
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    axios.post('/acts', {
+      act: newAct,
+    }).then((response) => {
+      setNewAct('');
+      const action = { type: 'GET_ACTS' }
+      dispatch(action);
+    }).catch((error) => {
+      console.log(`Error in Post ${error}`)
+      alert('Something went wrong.');
+    })
+  }
   
   return (
     <Container>
       <p> Acts of Kindness </p>
       <p> Add a new act here: </p>
-      <form className="form" >
+      <form className="form" onSubmit={submitForm}>
         Act:<input type="text"
         value={newAct}
         onChange={(e) => setNewAct(e.target.value)} />

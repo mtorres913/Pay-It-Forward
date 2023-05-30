@@ -23,6 +23,17 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  const act = req.body;
+  const sqlText = `INSERT INTO "acts" (acts)
+  VALUES ($1)`;
+  pool.query(sqlText, [act.act])
+    .then((result) => {
+      console.log(`Added act to the database`, act);
+      res.sendStatus(201);
+    }).catch((error) => {
+      console.log(`Error in making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    })
 });
 
 module.exports = router;
