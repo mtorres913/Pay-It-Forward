@@ -8,10 +8,11 @@ import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 
-function Act ({act,}){
-const acts = useSelector((store => store.acts));
+function Act ({act}){
+
 const dispatch = useDispatch();
 
 useEffect(() =>{
@@ -19,6 +20,16 @@ useEffect(() =>{
     dispatch(action);
 }, []);
 
+const deleteAct = (e) => {
+    console.log(`Deleting act ${act.id}`);
+    axios.delete(`/acts/${act.id}`).then((response) => {
+        const action = { type: 'GET_ACTS' }
+        dispatch(action)
+    }).catch((error) => {
+        console.log(`Error in deleteAct ${error}`);
+        alert('Something went wrong.');
+    })
+}
 
 
     return (
@@ -41,7 +52,7 @@ useEffect(() =>{
             <Button 
             variant="outlined"
             color="error"
-            // onClick
+            onClick={(e) => deleteAct(act.id)}
             >
                 Delete
             </Button>

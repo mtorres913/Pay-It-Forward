@@ -34,7 +34,7 @@ function InfoPage() {
   
   return (
     <Container>
-      <p> Acts of Kindness </p>
+      <h2> Acts of Kindness </h2>
       <p> Add a new act here: </p>
       <form className="form" onSubmit={submitForm}>
         Act:<input type="text"
