@@ -36,6 +36,7 @@ function Act({ act }) {
         axios.put(`/acts/save/${act.id}`, {
             act: changeAct,
         }).then((response) => {
+            alert(`Successfully saved (${changeAct})!`)
             const action = { type: 'GET_ACTS' }
             dispatch(action);
         }).catch((error) => {

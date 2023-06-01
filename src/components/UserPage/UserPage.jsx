@@ -33,10 +33,10 @@ const shuffleAct = (e) => {
   dispatch(action);
 }
 
-const completeAct = (e) => {
-  console.log(`Completing act ${act.id}`)
+const completeAct = (e, actId) => {
+  console.log(`Completing act ${actId}`)
   axios.post(`/act/`, {
-    actID: act.id,
+    actID: actId,
     userID: user.id,
   }).then((response) => {
     alert('You completed an act! You rock!!');
@@ -51,7 +51,7 @@ const completeAct = (e) => {
   return (
     <div className="container" id={act.id} >
       <h2>Welcome, {user.username}!</h2>
-      
+      {act.map(act => (
       <Grid item xs={12} md={4}>
         <Card sx={{ minWidth: 200 }}>
           <CardContent>
@@ -59,18 +59,18 @@ const completeAct = (e) => {
               variant="h5"
             >
   {/* {JSON.stringify(act)}  */}
-  {act.map(act => (
-    <div id={act.id}>
-      {act.act}
-    </div>
-  ))}
+
+        <div id={act.id}>
+          {act.act}
+        </div>
+  
             </Typography>
           </CardContent>
           <CardActions>
             <Button
             variant="outlined"
             color="error"
-            onClick={(e) => completeAct(e)}
+            onClick={(e) => completeAct(e, act.id)}
             > Complete 
             </Button>
             <Button
@@ -90,6 +90,7 @@ const completeAct = (e) => {
           </CardActions>
         </Card>
       </Grid>
+      ))}
       {/* <LogOutButton className="btn" /> */}
       <footer>“A single act of kindness throws out roots in all directions and the roots spring up and make new trees.” – Amelia Earhart</footer>
     </div>
