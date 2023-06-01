@@ -47,10 +47,10 @@ function Act({ act }) {
 
     return (
         <Grid item xs={{ minWidth: 275 }}>
-            <Card sx={{ minWidth: 425 }}>
+            <Card sx={{ minWidth: 450 }}>
                 <CardContent>
                     <TextField fullWidth
-                        defaultValue={act.acts}
+                        defaultValue={act.act}
                         id="outlined-basic"
                         variant="outlined"
                         onChange={(e) => setChangeAct(e.target.value)} />

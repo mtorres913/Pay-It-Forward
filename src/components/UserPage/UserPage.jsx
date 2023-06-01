@@ -33,7 +33,7 @@ const shuffleAct = (e) => {
   dispatch(action);
 }
 
-completeAct = (e) => {
+const completeAct = (e) => {
   console.log(`Completing act ${act.id}`)
   axios.post(`/act/`, {
     actID: act.id,
@@ -61,7 +61,7 @@ completeAct = (e) => {
   {/* {JSON.stringify(act)}  */}
   {act.map(act => (
     <div id={act.id}>
-      {act.acts}
+      {act.act}
     </div>
   ))}
             </Typography>
@@ -70,13 +70,13 @@ completeAct = (e) => {
             <Button
             variant="outlined"
             color="error"
-            // onClick
+            onClick={(e) => completeAct(e)}
             > Complete 
             </Button>
             <Button
             variant="outlined"
             color="error"
-            // onClick
+          //  onClick
             >
               Favorite
             </Button>

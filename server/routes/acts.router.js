@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
   const act = req.body;
-  const sqlText = `INSERT INTO "acts" (acts)
+  const sqlText = `INSERT INTO "acts" (act)
   VALUES ($1)`;
   pool.query(sqlText, [act.act])
     .then((result) => {
@@ -52,8 +52,8 @@ router.put('/save/:id', (req,res) => {
   const actID = Number(req.params.id);
   const act = req.body;
   console.log(`PUT /save/${actID}`);
-  let queryText = `UPDATE "acts" SET "acts" = $1 WHERE "id" = $2`;
-  pool.query(queryText, [act, actID]).then(results => {
+  let queryText = `UPDATE "acts" SET "act" = $1 WHERE "id" = $2`;
+  pool.query(queryText, [act.act, actID]).then(results => {
     res.sendStatus(200);
   }).catch(error => {
     console.log(`Error in PUT /acts ${error}`);
