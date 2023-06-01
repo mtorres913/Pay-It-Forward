@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM "acts"`;
+  const queryText = `SELECT * FROM "acts" ORDER BY "id" DESC`;
   pool
   .query(queryText)
   .then((result) => {
@@ -53,7 +53,7 @@ router.put('/save/:id', (req,res) => {
   const act = req.body;
   console.log(`PUT /save/${actID}`);
   let queryText = `UPDATE "acts" SET "acts" = $1 WHERE "id" = $2`;
-  pool.query(queryText, [act.act, actID]).then(results => {
+  pool.query(queryText, [act, actID]).then(results => {
     res.sendStatus(200);
   }).catch(error => {
     console.log(`Error in PUT /acts ${error}`);

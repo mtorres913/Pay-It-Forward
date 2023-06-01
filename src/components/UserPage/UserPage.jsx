@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useEffect } from 'react';
-
+import axios from 'axios';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -22,13 +22,36 @@ function UserPage() {
     dispatch(action);
   }, []);
 
-  const getBackgroundDecoration = () => {
-        return 'lightgreen';
+//   const getBackgroundDecoration = () => {
+//         return 'lightgreen';
+// }
+
+
+const shuffleAct = (e) => {
+  console.log('in shuffleAct');
+  const action = { type: 'GET_ACT' };
+  dispatch(action);
 }
+
+completeAct = (e) => {
+  console.log(`Completing act ${act.id}`)
+  axios.post(`/act/`, {
+    actID: act.id,
+    userID: user.id,
+  }).then((response) => {
+    alert('You completed an act! You rock!!');
+    const action = { type: 'GET_ACT' };
+    dispatch(action);
+  }).catch((error) => {
+    console.log(`Error in completeAct ${error}`);
+    alert('Something went wrong.');
+  })
+}
+
   return (
     <div className="container" id={act.id} >
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      
       <Grid item xs={12} md={4}>
         <Card sx={{ minWidth: 200 }}>
           <CardContent>
@@ -60,7 +83,7 @@ function UserPage() {
             <Button
             variant="outlined"
             color="error"
-            // onClick
+            onClick={(e) => shuffleAct(e)}
             >
               Shuffle
             </Button>

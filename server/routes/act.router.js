@@ -24,7 +24,16 @@ router.get('/random', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  // POST route code here
+  const userAct = req.body;
+  const sqlText = `INSERT INTO "user_acts" (user_id, act_id, complete)
+  VALUES ($1, $2, True)`;
+  pool.query(sqlText, [userAct.userID, userAct.actID]);
+  .then((result) => {
+    console.log(`Added completed act to the database`, userAct);
+    res.sendStatus(201);
+  }).catch((error) => {
+    console.log(`Error making database query`)
+  })
 });
 
 module.exports = router;
