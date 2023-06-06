@@ -26,16 +26,16 @@ function UserPage() {
   useEffect(() => {
     console.log('in UseEffect');
     getCompletion();
-  }, []);
+  }, [act]);
 
   const getBackgroundDecoration = () => {
-        if (completion.complete === TRUE){
+        if (completion && completion.length > 0){
           return 'lightgreen';
         }
 }
 
 const getButtonDecoration= () => {
-  if (completion.complete === TRUE){
+  if (completion.complete === 'TRUE'){
       return 'line-through';
   } else {
       return 'none';
@@ -49,17 +49,17 @@ const shuffleAct = (e) => {
   dispatch(action);
 }
 
-const getCompletion = () => {
-  console.log(`Getting completion ${act.id}`);
-  axios.get(`/act/`, {
-    userID: user.id,
-    actID: act.id,
-  }).then((response) => {
-    setCompletion('');
-  }).catch((error) => {
-    console.log(`Error in Get ${error}`)
-    alert('Act may not have been completed yet.');
-  })
+const getCompletion = (actID) => {
+  console.log(`Getting completion`, act);
+  if(act && act.length > 0) {
+    axios.get(`/act/${user.id}/${act[0].id}`).then((response) => {
+      setCompletion(response.data);
+    }).catch((error) => {
+      console.log(`Error in Get ${error}`)
+      alert('Act may not have been completed yet.');
+    })
+  }
+
 }
 
 const completeAct = (e, actId) => {
@@ -94,9 +94,10 @@ const favoriteAct = (e, actID, act) => {
   return (
     <div className="container" id={act.id} >
       <h2>Welcome, {user.username}!</h2>
+      {/* <div>-{JSON.stringify(completion)}-</div> */}
       {act.map(act => (
       <Grid item xs={12} md={4}>
-        <Card style={{backgroundColor: getBackgroundDecoration()}} 
+        <Card style={{backgroundColor: getBackgroundDecoration(act.id)}} 
         sx={{ minWidth: 200 }}>
           <CardContent>
             <Typography
@@ -111,13 +112,27 @@ const favoriteAct = (e, actID, act) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button
-            style={{textDecorationLine: getButtonDecoration()}}
-            variant="outlined"
-            color="error"
-            onClick={(e) => completeAct(e, act.id)}
-            > Complete 
-            </Button>
+            {
+              completion && completion.length > 0 ? (
+                <Button
+                style={{textDecorationLine: getButtonDecoration(act.id)}}
+                variant="outlined"
+                color="error"
+                disabled
+                onClick={(e) => completeAct(e, act.id)}
+                > Completed! 
+                </Button>
+              ) : (
+                <Button
+                style={{textDecorationLine: getButtonDecoration(act.id)}}
+                variant="outlined"
+                color="error"
+                onClick={(e) => completeAct(e, act.id)}
+                > Complete 
+                </Button>
+              )
+            }
+            
             <Button
             variant="outlined"
             color="error"

@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import act from './act.reducer';
 import acts from './acts.reducer';
-import completion from  './completion.reducer';
+
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
