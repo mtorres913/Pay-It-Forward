@@ -11,7 +11,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE "acts" (
 	"id" SERIAL PRIMARY KEY,
-	"acts" VARCHAR (200)
+	"act" VARCHAR (200)
 );
 
 CREATE TABLE "user_acts" (
@@ -28,7 +28,8 @@ CREATE TABLE "favorites" (
 );
 
 
-INSERT INTO acts (acts)
+
+INSERT INTO acts (act)
 VALUES ('Hold the elevator door open for someone'), ('Leave kind messages on social media posts'), ('Write an appreciation card to your coworkers and friends'), ('Send your friend photos of themselves on their wedding day'), ('Pick up garbage you see on the floor'),
 ('Help with chores around the house'), ('Check in on a new mom or dad every couple of weeks so they don’t feel lonely'), ('Smile at strangers'), ('Buy a coffee for the person behind you'), ('Convince your work to fundraise for a  charity'), ('Bring muffins and coffee to work one morning for your coworkers'), ('Write a kind birthday message to someone on their birthday'), ('Send a thank you note to your former teacher'), ('Do the thing someone always nags you about'), ('Send a holiday or greeting card to kids in the hospital'), ('Leave extra change in a vending machine'), ('Listen with care to someone’s struggles'), ('Compliment a friend'), ('Buy a food gift basket for the family who recently lost someone'), ('Forgive someone who hurt you'), ('Give a generous tip to those working in the service industry'), ('Call a friend to see how they’re doing'), ('Send positive vibes to your enemy'), ('Leave books in a library mailbox '), ('Throw someone you care about a surprise party or birthday party'), ('Volunteer at a nonprofit'),
 ('Leave a positive review for a local business'), ('Donate blood'),
