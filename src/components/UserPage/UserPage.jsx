@@ -48,13 +48,13 @@ const completeAct = (e, actId) => {
   })
 }
 
-const favoriteAct = (e, actID) => {
-  console.log(`Favoriting act ${actId}`)
+const favoriteAct = (e, actID, act) => {
+  console.log(`Favoriting act ${actID}`)
   axios.post(`/act/favorite/`, {
-    actID: actId,
+    actID: actID,
     userID: user.id,
   }).then((response) => {
-    alert(`Added (${act.act}) to Favorites`)
+    alert(`Added (${act.act}) to Favorites`, act)
   }).catch((error) => {
     console.log(`Error in favoriteAct ${error}`);
     alert('Something went wrong.');
@@ -90,7 +90,7 @@ const favoriteAct = (e, actID) => {
             <Button
             variant="outlined"
             color="error"
-            onClick={(e) => favoriteAct(e, act.id)}
+            onClick={(e) => favoriteAct(e, act.id, act)}
             >
               Favorite
             </Button>

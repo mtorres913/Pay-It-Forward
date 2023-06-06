@@ -37,4 +37,18 @@ router.post('/', (req, res) => {
   })
 });
 
+router.post('/favorite', (req, res) => {
+  const userAct = req.body;
+  const sqlText = `INSERT INTO "favorites" (user_id, act_id)
+  VALUES ($1,$2)`;
+  pool.query(sqlText, [userAct.userID, userAct.actID])
+  .then((result) => {
+    console.log(`Added favorited act to the database`, userAct);
+    res.sendStatus(201);
+  }).catch((error) => {
+    console.log(`Error making database query ${sqlText}`, error);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
