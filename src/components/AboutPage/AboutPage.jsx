@@ -18,6 +18,9 @@ On Login, the app gives you a random act of kindness to do for someone from a li
  The app also gives the user the option to edit, post , delete acts to the list via an edit page that displays all available acts and available options as described for all new and existing acts.
 The user would also have the option to: check an act once completed, favorite acts, or get a new random act. 
 </p>
+
+<p>This version uses React, Redux, Express, Passport, Material-UI, and PostgreSQL.</p>
+
 <p>For my son, Liam. I love you, peanut!</p>
 <br/>
 <p>Connect with me on LinkedIn!</p>

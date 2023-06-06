@@ -8,7 +8,7 @@ import Act from './Act';
 import axios from 'axios';
 
 
-function InfoPage() {
+function EditPage() {
   const acts = useSelector((store => store.acts));
   const dispatch = useDispatch();
   const [newAct, setNewAct] = useState('');
@@ -62,4 +62,4 @@ function InfoPage() {
   );
 }
 
-export default InfoPage;
+export default EditPage;
