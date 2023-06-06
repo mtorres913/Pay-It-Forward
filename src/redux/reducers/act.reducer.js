@@ -7,5 +7,4 @@ const act = (state = [], action) => {
     return state;
 }
 
-
 export default act;
