@@ -7,13 +7,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const act = useSelector((store) => store.act);
+  const [completion, setCompletion] = useState('');
   const dispatch = useDispatch();
  
   useEffect(() => {
@@ -22,15 +23,43 @@ function UserPage() {
     dispatch(action);
   }, []);
 
-//   const getBackgroundDecoration = () => {
-//         return 'lightgreen';
-// }
+  useEffect(() => {
+    console.log('in UseEffect');
+    getCompletion();
+  }, []);
+
+  const getBackgroundDecoration = () => {
+        if (completion.complete === TRUE){
+          return 'lightgreen';
+        }
+}
+
+const getButtonDecoration= () => {
+  if (completion.complete === TRUE){
+      return 'line-through';
+  } else {
+      return 'none';
+  }
+}
 
 
 const shuffleAct = (e) => {
   console.log('in shuffleAct');
   const action = { type: 'GET_ACT' };
   dispatch(action);
+}
+
+const getCompletion = () => {
+  console.log(`Getting completion ${act.id}`);
+  axios.get(`/act/`, {
+    userID: user.id,
+    actID: act.id,
+  }).then((response) => {
+    setCompletion('');
+  }).catch((error) => {
+    console.log(`Error in Get ${error}`)
+    alert('Act may not have been completed yet.');
+  })
 }
 
 const completeAct = (e, actId) => {
@@ -67,7 +96,8 @@ const favoriteAct = (e, actID, act) => {
       <h2>Welcome, {user.username}!</h2>
       {act.map(act => (
       <Grid item xs={12} md={4}>
-        <Card sx={{ minWidth: 200 }}>
+        <Card style={{backgroundColor: getBackgroundDecoration()}} 
+        sx={{ minWidth: 200 }}>
           <CardContent>
             <Typography
               variant="h5"
@@ -82,6 +112,7 @@ const favoriteAct = (e, actID, act) => {
           </CardContent>
           <CardActions>
             <Button
+            style={{textDecorationLine: getButtonDecoration()}}
             variant="outlined"
             color="error"
             onClick={(e) => completeAct(e, act.id)}
