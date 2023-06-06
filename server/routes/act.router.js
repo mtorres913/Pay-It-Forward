@@ -20,6 +20,19 @@ router.get('/random', (req, res) => {
   })
 });
 
+router.get('/', (req, res) => {
+  const userAct = req.body;
+  const sqlText = `SELECT "user_acts".user_id, "user_acts".act_id, "user_acts".complete FROM 
+  "user_acts" WHERE "user_acts".act_id = $1 AND "user_acts".user_id = $2`;
+  pool.query(sqlText, [userAct.actID, userAct.userID])
+  .then((result) => {
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log(`Error on query ${error}`);
+    res.sendStatus(500);
+  })
+})
+
 /**
  * POST route template
  */
@@ -50,5 +63,6 @@ router.post('/favorite', (req, res) => {
     res.sendStatus(500);
   })
 })
+
 
 module.exports = router;
