@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   act,
   acts,
-  completion,
 });
 
 export default rootReducer;

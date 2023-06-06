@@ -11,18 +11,8 @@ function* fetchAct(){
     }
 }
 
-function* fetchCompletion() {
-    try {
-        const completion = yield axios.get('/act/')
-        yield put({ type: 'SET_COMPLETION', payload: completion.data })
-    } catch (error) {
-        console.log(`Error in fetchCompletion ${error}`);
-        alert ('Act may not be completed.')
-    }
-}
-
 function* actSaga(){
     yield takeLatest('GET_ACT', fetchAct);
-    yield takeLatest('GET_COMPLETION', fetchCompletion);
+  
 }
 export default actSaga;
