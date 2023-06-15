@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkedIn from '/Users/Miguel/Documents/unit-19/Pay-It-Forward/src/LinkedIn.png'
+import LinkedIn from '/Users/Miguel/Documents/unit-19/Pay-It-Forward/src/components/AboutPage/LinkedIn.png'
 // This is one of our simplest components
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
